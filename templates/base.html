@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{name}} — {{tagline}}</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-accent="{{accent}}">
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="hero-label">By referral only</p>
+        <h1 class="hero-title">{{name}}</h1>
+        <p class="hero-tagline">{{tagline}}</p>
+        <p class="hero-problem">{{problem}}</p>
+        <a href="#services" class="cta">Discover our services</a>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="services-inner">
+        <p class="section-label">What we offer</p>
+        <h2 class="section-title">Discretion. Access. Excellence.</h2>
+        <ul class="services-list">
+          {{services}}
+        </ul>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p class="footer-name">{{name}}</p>
+      <p class="footer-tagline">{{tagline}}</p>
+    </footer>
+  </main>
+</body>
+</html>
