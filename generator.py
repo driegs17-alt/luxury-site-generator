@@ -121,11 +121,11 @@ def generate_site(template_name: str, output_dir: str, custom_data: dict = None)
     # Write HTML
     (output_path / "index.html").write_text(html)
     
-    # Copy assets
+    # Copy assets (skip if output is project root - assets already in place)
     base = Path(__file__).parent
     assets_src = base / "assets"
-    assets_dst = output_path / "assets"
-    if assets_src.exists():
+    assets_dst = output_path.resolve() / "assets"
+    if assets_src.exists() and assets_src.resolve() != assets_dst:
         import shutil
         if assets_dst.exists():
             shutil.rmtree(assets_dst)
@@ -145,7 +145,7 @@ def list_templates() -> None:
 def main():
     parser = argparse.ArgumentParser(description="Generate luxury websites for affluent client services")
     parser.add_argument("template", nargs="?", help="Template to generate (concierge, aviation, estate, art, wealth, wellness)")
-    parser.add_argument("-o", "--output", default="./output", help="Output directory")
+    parser.add_argument("-o", "--output", default=".", help="Output directory (use . for project root)")
     parser.add_argument("-l", "--list", action="store_true", help="List available templates")
     parser.add_argument("--name", help="Custom business name")
     parser.add_argument("--tagline", help="Custom tagline")
