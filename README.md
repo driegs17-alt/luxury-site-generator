@@ -29,10 +29,27 @@ python3 generator.py estate --name "Monte Vista Estates" --tagline "Exceptional 
 | `wealth` | Family office, wealth orchestration | Banker navy & gold |
 | `wellness` | Executive health, longevity, biohacking | Sage & organic |
 
+## Lead capture (market & sales growth)
+
+Generated sites include an **email capture** section to grow leads and sales:
+
+- **Section**: "Exclusive access" with headline and one email field; copy is template-specific.
+- **Form action**: Default `#` (no backend). For production, use `--leads-action` with a Formspree or Netlify Forms URL:
+  ```bash
+  python3 generator.py concierge --leads-action "https://formspree.io/f/YOUR_FORM_ID"
+  ```
+- **Export leads**: If you store leads locally in `leads/emails.json`, export to CSV:
+  ```bash
+  python3 scripts/leads_export.py --init   # create empty leads/emails.json
+  python3 scripts/leads_export.py -o leads.csv
+  ```
+
+The project includes a **Cursor skill** (`.cursor/skills/lead-capture-growth/`) so the agent can help with email capture, copy, and integration.
+
 ## Output
 
 Each run produces a complete static site:
-- `index.html` — Single-page layout with hero, services, footer
+- `index.html` — Single-page layout with hero, services, leads section, footer
 - `assets/styles.css` — Premium design system (Cormorant Garamond + Inter)
 
 Open `output/index.html` in a browser to preview.

@@ -21,7 +21,10 @@ TEMPLATES = {
             "Global reservation privileges",
             "White-glove relocation"
         ],
-        "accent": "champagne"
+        "accent": "champagne",
+        "leads_heading": "First access to what's next.",
+        "leads_sub": "Join the list for exclusive invitations and priority booking.",
+        "leads_action": "#"
     },
     "aviation": {
         "name": "Apex Air",
@@ -34,7 +37,10 @@ TEMPLATES = {
             "Helicopter transfer coordination",
             "Discretion at every altitude"
         ],
-        "accent": "obsidian"
+        "accent": "obsidian",
+        "leads_heading": "Reserved for you.",
+        "leads_sub": "Be the first to receive availability and member-only offers.",
+        "leads_action": "#"
     },
     "estate": {
         "name": "Vestry Estates",
@@ -47,7 +53,10 @@ TEMPLATES = {
             "Cross-border property coordination",
             "Legacy planning integration"
         ],
-        "accent": "forest"
+        "accent": "forest",
+        "leads_heading": "Off-market opportunities, first.",
+        "leads_sub": "Get early access to exclusive properties and private viewings.",
+        "leads_action": "#"
     },
     "art": {
         "name": "Atelier Advisory",
@@ -60,7 +69,10 @@ TEMPLATES = {
             "Private sale facilitation",
             "Estate planning for collections"
         ],
-        "accent": "gallery"
+        "accent": "gallery",
+        "leads_heading": "Join the list.",
+        "leads_sub": "Receive priority access to private sales and acquisition opportunities.",
+        "leads_action": "#"
     },
     "wealth": {
         "name": "Meridian Family Office",
@@ -73,7 +85,10 @@ TEMPLATES = {
             "Concierge tax & legal coordination",
             "Next-generation preparation"
         ],
-        "accent": "banker"
+        "accent": "banker",
+        "leads_heading": "A conversation, when you're ready.",
+        "leads_sub": "Express interest and we'll reach out to schedule a confidential introduction.",
+        "leads_action": "#"
     },
     "wellness": {
         "name": "Apex Longevity",
@@ -86,7 +101,10 @@ TEMPLATES = {
             "Regenerative medicine access",
             "Discretion-first care"
         ],
-        "accent": "sage"
+        "accent": "sage",
+        "leads_heading": "Be the first to know.",
+        "leads_sub": "Early access to new protocols, member openings, and insider briefings.",
+        "leads_action": "#"
     }
 }
 
@@ -149,6 +167,7 @@ def main():
     parser.add_argument("-l", "--list", action="store_true", help="List available templates")
     parser.add_argument("--name", help="Custom business name")
     parser.add_argument("--tagline", help="Custom tagline")
+    parser.add_argument("--leads-action", help="Form action URL for lead capture (e.g. Formspree or Netlify Forms endpoint)")
     
     args = parser.parse_args()
     
@@ -162,6 +181,8 @@ def main():
         custom["name"] = args.name
     if args.tagline:
         custom["tagline"] = args.tagline
+    if args.leads_action:
+        custom["leads_action"] = args.leads_action
     
     try:
         path = generate_site(args.template, args.output, custom or None)

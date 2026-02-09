@@ -223,6 +223,59 @@ body {
 .services-list li:nth-child(4) { animation-delay: 0.25s; }
 .services-list li:nth-child(5) { animation-delay: 0.3s; }
 
+/* Leads / email capture */
+.leads {
+  padding: var(--space-3xl) var(--space-xl);
+  background: var(--paper);
+  text-align: center;
+}
+
+.leads-inner {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.leads-sub {
+  font-size: 0.95rem;
+  color: var(--mist);
+  margin-bottom: var(--space-lg);
+}
+
+.leads-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  align-items: stretch;
+}
+
+.leads-form input[type="email"] {
+  flex: 1;
+  min-width: 200px;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--pearl);
+  transition: border-color var(--duration-normal) var(--ease-out-expo);
+}
+
+.leads-form input[type="email"]::placeholder {
+  color: var(--mist);
+}
+
+.leads-form input[type="email"]:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+
+.leads-form .cta {
+  margin: 0;
+  white-space: nowrap;
+}
+
 /* Footer */
 .footer {
   padding: var(--space-xl);
@@ -264,6 +317,14 @@ body {
 [data-accent="obsidian"] .section-title { color: var(--white); }
 [data-accent="obsidian"] .services-list li { color: var(--pearl); border-color: var(--graphite); }
 [data-accent="obsidian"] .services-list li::before { background: var(--champagne); }
+[data-accent="obsidian"] .leads { background: var(--charcoal); }
+[data-accent="obsidian"] .leads .section-label,
+[data-accent="obsidian"] .leads .section-title { color: var(--white); }
+[data-accent="obsidian"] .leads-sub { color: var(--mist); }
+[data-accent="obsidian"] .leads-form input[type="email"] { background: var(--obsidian-accent); border-color: var(--obsidian-highlight); color: var(--white); }
+[data-accent="obsidian"] .leads-form input[type="email"]:focus { border-color: var(--champagne); }
+[data-accent="obsidian"] .leads-form .cta { border-color: var(--champagne); color: var(--champagne); }
+[data-accent="obsidian"] .leads-form .cta:hover { background: var(--champagne); color: var(--obsidian); }
 
 [data-accent="forest"] .hero-title { color: var(--forest); }
 [data-accent="forest"] .cta { border-color: var(--forest); color: var(--forest); }
