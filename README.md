@@ -38,9 +38,14 @@ Generated sites include an **email capture** section to grow leads and sales:
   ```bash
   python3 generator.py concierge --leads-action "https://formspree.io/f/YOUR_FORM_ID"
   ```
-- **Export leads**: If you store leads locally in `leads/emails.json`, export to CSV:
+- **Local endpoint**: Run the included server to capture leads into `leads/emails.json`:
   ```bash
-  python3 scripts/leads_export.py --init   # create empty leads/emails.json
+  python3 generator.py concierge -o output --leads-action "http://127.0.0.1:8080/submit"
+  python3 server.py -d output -p 8080
+  ```
+  Then open http://127.0.0.1:8080 — form submissions go to `/submit` and are stored locally.
+- **Export leads**: Export stored emails to CSV:
+  ```bash
   python3 scripts/leads_export.py -o leads.csv
   ```
 
