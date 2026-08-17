@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request access — Elite Concierge</title>
+  <meta name="description" content="Request private access to Elite Concierge. Join the list for exclusive invitations, priority booking, and a confidential introduction.">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-accent="champagne">
+  <header class="site-nav">
+    <a class="nav-brand" href="/">Elite Concierge</a>
+    <nav>
+      <a href="/#services">Services</a>
+      <a href="/inquire" class="nav-cta" aria-current="page">Request access</a>
+    </nav>
+  </header>
+
+  <main class="inquire-page">
+    <section class="inquire-hero">
+      <p class="hero-label">Private client list</p>
+      <h1 class="hero-title">Request access</h1>
+      <p class="hero-tagline">Fewer clients. Faster yes. Better outcomes.</p>
+      <p class="hero-problem">Leave your email and we will reach out with a confidential introduction—priority booking, member invitations, and services reserved for our list.</p>
+    </section>
+
+    <section class="inquire-grid">
+      <div class="inquire-copy">
+        <p class="section-label">Why join the list</p>
+        <h2 class="section-title">Built to convert interest into a relationship.</h2>
+        <ul class="services-list inquire-benefits">
+          <li>Priority booking before public availability</li>
+          <li>Invitations to private events and experiences</li>
+          <li>A single introduction instead of a cold inquiry</li>
+          <li>Discreet follow-up from our client team</li>
+        </ul>
+      </div>
+
+      <div class="inquire-card">
+        <p class="section-label">Begin here</p>
+        <h2 class="section-title">Your details stay private.</h2>
+        <p class="leads-sub">One email is enough. A name helps us personalize the first conversation.</p>
+        <form class="leads-form inquire-form" action="/api/leads" method="post">
+          <input type="hidden" name="source" value="inquire">
+          <label class="sr-only" for="name">Name</label>
+          <input id="name" type="text" name="name" placeholder="Your name (optional)" autocomplete="name">
+          <label class="sr-only" for="email">Email address</label>
+          <input id="email" type="email" name="email" placeholder="Your email" required autocomplete="email" aria-label="Email address">
+          <button type="submit" class="cta">Request access</button>
+        </form>
+        <p class="inquire-fine">No public newsletter. We use this only to follow up about access and services.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-name">Elite Concierge</p>
+    <p class="footer-tagline">Life, handled.</p>
+  </footer>
+</body>
+</html>

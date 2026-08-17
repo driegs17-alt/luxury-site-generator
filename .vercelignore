@@ -1,0 +1,11 @@
+output
+.cursor
+leads
+__pycache__
+*.pyc
+*.py
+scripts
+.git
+.DS_Store
+README.md
+templates

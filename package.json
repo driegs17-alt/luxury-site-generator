@@ -1,0 +1,6 @@
+{
+  "name": "luxury-site-generator",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static luxury website for Vercel"
+}
