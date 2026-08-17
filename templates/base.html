@@ -7,6 +7,13 @@
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body data-accent="{{accent}}">
+  <header class="site-nav">
+    <a class="nav-brand" href="/">{{name}}</a>
+    <nav>
+      <a href="/#services">Services</a>
+      <a href="/inquire" class="nav-cta">Request access</a>
+    </nav>
+  </header>
   <main>
     <section class="hero">
       <div class="hero-content">
@@ -14,7 +21,7 @@
         <h1 class="hero-title">{{name}}</h1>
         <p class="hero-tagline">{{tagline}}</p>
         <p class="hero-problem">{{problem}}</p>
-        <a href="#services" class="cta">Discover our services</a>
+        <a href="/inquire" class="cta">Request private access</a>
       </div>
     </section>
 
@@ -33,10 +40,7 @@
         <p class="section-label">Exclusive access</p>
         <h2 class="section-title">{{leads_heading}}</h2>
         <p class="leads-sub">{{leads_sub}}</p>
-        <form class="leads-form" action="{{leads_action}}" method="post">
-          <input type="email" name="email" placeholder="Your email" required aria-label="Email address">
-          <button type="submit" class="cta">Request access</button>
-        </form>
+        <a href="/inquire" class="cta">Continue to request access</a>
       </div>
     </section>
 

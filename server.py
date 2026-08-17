@@ -64,7 +64,7 @@ class LeadCaptureHandler(SimpleHTTPRequestHandler):
 def main():
     import argparse
     parser = argparse.ArgumentParser(description="Serve site and /submit lead endpoint")
-    parser.add_argument("-d", "--dir", default="output", help="Directory to serve (default: output)")
+    parser.add_argument("-d", "--dir", default=".", help="Directory to serve (default: project root)")
     parser.add_argument("-p", "--port", type=int, default=8080, help="Port (default: 8080)")
     parser.add_argument("--bind", default="127.0.0.1", help="Bind address (default: 127.0.0.1)")
     args = parser.parse_args()
@@ -74,7 +74,7 @@ def main():
     endpoint = f"http://{args.bind}:{args.port}{SUBMIT_PATH}"
     print(f"Serving {directory} at http://{args.bind}:{args.port}")
     print(f"Lead form endpoint: {endpoint}")
-    print("Generate site with: python3 generator.py <template> -o output --leads-action", endpoint)
+    print("Generate site with: python3 generator.py <template> --leads-action", endpoint)
     server = HTTPServer(
         (args.bind, args.port),
         lambda r, a, s: LeadCaptureHandler(r, a, s, directory=directory),

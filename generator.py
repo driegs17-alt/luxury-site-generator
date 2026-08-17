@@ -24,7 +24,7 @@ TEMPLATES = {
         "accent": "champagne",
         "leads_heading": "First access to what's next.",
         "leads_sub": "Join the list for exclusive invitations and priority booking.",
-        "leads_action": "#"
+        "leads_action": "/api/leads"
     },
     "aviation": {
         "name": "Apex Air",
@@ -40,7 +40,7 @@ TEMPLATES = {
         "accent": "obsidian",
         "leads_heading": "Reserved for you.",
         "leads_sub": "Be the first to receive availability and member-only offers.",
-        "leads_action": "#"
+        "leads_action": "/api/leads"
     },
     "estate": {
         "name": "Vestry Estates",
@@ -56,7 +56,7 @@ TEMPLATES = {
         "accent": "forest",
         "leads_heading": "Off-market opportunities, first.",
         "leads_sub": "Get early access to exclusive properties and private viewings.",
-        "leads_action": "#"
+        "leads_action": "/api/leads"
     },
     "art": {
         "name": "Atelier Advisory",
@@ -72,7 +72,7 @@ TEMPLATES = {
         "accent": "gallery",
         "leads_heading": "Join the list.",
         "leads_sub": "Receive priority access to private sales and acquisition opportunities.",
-        "leads_action": "#"
+        "leads_action": "/api/leads"
     },
     "wealth": {
         "name": "Meridian Family Office",
@@ -88,7 +88,7 @@ TEMPLATES = {
         "accent": "banker",
         "leads_heading": "A conversation, when you're ready.",
         "leads_sub": "Express interest and we'll reach out to schedule a confidential introduction.",
-        "leads_action": "#"
+        "leads_action": "/api/leads"
     },
     "wellness": {
         "name": "Apex Longevity",
@@ -104,18 +104,28 @@ TEMPLATES = {
         "accent": "sage",
         "leads_heading": "Be the first to know.",
         "leads_sub": "Early access to new protocols, member openings, and insider briefings.",
-        "leads_action": "#"
+        "leads_action": "/api/leads"
     }
 }
 
 
-def load_template_html() -> str:
-    """Load the base HTML template."""
+def load_template_html(filename: str = "base.html") -> str:
+    """Load an HTML template from templates/."""
     base = Path(__file__).parent
-    template_path = base / "templates" / "base.html"
+    template_path = base / "templates" / filename
     if not template_path.exists():
         raise FileNotFoundError(f"Template not found: {template_path}")
     return template_path.read_text()
+
+
+def apply_template(html: str, data: dict) -> str:
+    """Replace {{placeholders}} using template data."""
+    for key, value in data.items():
+        if isinstance(value, list):
+            value = "\n          ".join(f"<li>{item}</li>" for item in value)
+        placeholder = "{{" + key + "}}"
+        html = html.replace(placeholder, str(value))
+    return html
 
 
 def generate_site(template_name: str, output_dir: str, custom_data: dict = None) -> str:
@@ -124,20 +134,18 @@ def generate_site(template_name: str, output_dir: str, custom_data: dict = None)
         raise ValueError(f"Unknown template: {template_name}. Choose from: {list(TEMPLATES.keys())}")
     
     data = {**TEMPLATES[template_name], **(custom_data or {})}
-    html = load_template_html()
-    
-    # Apply template variables
-    for key, value in data.items():
-        if isinstance(value, list):
-            value = "\n          ".join(f"<li>{item}</li>" for item in value)
-        placeholder = "{{" + key + "}}"
-        html = html.replace(placeholder, str(value))
     
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
     
-    # Write HTML
-    (output_path / "index.html").write_text(html)
+    pages = {
+        "index.html": "base.html",
+        "inquire.html": "inquire.html",
+        "thank-you.html": "thank-you.html",
+    }
+    for dest, source in pages.items():
+        html = apply_template(load_template_html(source), data)
+        (output_path / dest).write_text(html)
     
     # Copy assets (skip if output is project root - assets already in place)
     base = Path(__file__).parent
